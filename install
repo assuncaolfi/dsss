@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+brew install coreutils ffmpeg
+python3 -m pip install -U demucs git+https://github.com/ytdl-org/youtube-dl.git@master

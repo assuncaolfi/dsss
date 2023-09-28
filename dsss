@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p separated/htdemucs songs
+SONG="songs/${1}.wav"
+youtube-dl --extract-audio --audio-format wav --output $SONG $2
+demucs $SONG
+for STEM in "bass" "drums" "other" "vocals"; do
+  SUBDIR="${1}/${STEM}"
+  SLICES="slices/${SUBDIR}"
+  SAMPLES="samples/${SUBDIR}"
+  mkdir -p $SLICES $SAMPLES
+  ffmpeg -i "separated/htdemucs/${SUBDIR}.wav" -f segment -segment_time 8 -c copy "${SLICES}/%03d.wav"
+  shuf -zn16 -e $SLICES/* | xargs -0 -I{} cp -v {} $SAMPLES/
+done
