@@ -9,5 +9,5 @@
 
 It's a creative tool to generate samples for sample-based music making.
 
-Usage: `./dsss [NAME] [URL]`.
+Usage: `./dsss [NAME] [URL]`.  
 Example: `./dsss samba-de-mar "https://www.youtube.com/watch?v=duhwrj1U8Lo"`
